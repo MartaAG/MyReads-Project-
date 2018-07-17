@@ -40,6 +40,10 @@ class BooksApp extends React.Component {
       </div>
       <h2 className="bookshelf-title">Currently Reading</h2>
    		 <ListBooks  books = {this.state.books.filter(filterShelf.bind(this, "currentlyReading"))} shelf = "currentlyReading"  />
+       <h2 className="bookshelf-title">Want to read</h2>
+       <ListBooks  books = {this.state.books.filter(filterShelf.bind(this, "wantToRead"))} shelf = "wantToRead"  />
+       <h2 className="bookshelf-title">Read</h2>
+       	 <ListBooks  books = {this.state.books.filter(filterShelf.bind(this, "read"))} shelf = "read"  />
        </div>
        <div className="open-search">
              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
