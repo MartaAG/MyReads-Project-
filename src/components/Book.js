@@ -3,12 +3,14 @@ import * as BooksAPI from '../BooksAPI'
 
 class Book extends React.Component {
   constructor(props) {
-    super(props);
+    super(); //calls parents constructor
      this.handleChange = this.handleChange.bind(this);
   }
+  //Change select options
   handleChange (event) {
     this.props.shelfChange(this.props.book, event.target.value);
   }
+  //take value from select list
 render() {
   return (
     <li>
