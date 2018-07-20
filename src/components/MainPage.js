@@ -6,10 +6,6 @@ class MainPage extends React.Component {
   constructor(props) {
     super();
   }
-      updateQuery = (query) => {
-            this.setState({ query: query });
-      }
-
 
   render() {
     // helper function for filtering books by shelf

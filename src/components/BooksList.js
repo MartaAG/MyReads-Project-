@@ -2,11 +2,6 @@ import React from 'react';
 import Book from './Book';
 
 class ListBooks extends React.Component {
-  constructor(props) {
-    super(props);
-    }
-
-
   render() {
     return (
       <div className="bookshelf" >
@@ -21,7 +16,6 @@ class ListBooks extends React.Component {
       </div>
     )
     }
-
 }
 
 export default ListBooks;

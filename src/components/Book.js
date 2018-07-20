@@ -1,17 +1,21 @@
 import React from 'react';
-import * as BooksAPI from '../BooksAPI'
 
 class Book extends React.Component {
   constructor(props) {
     super(props); //calls parents constructor
-     this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
   }
   //Change select options
   handleChange (event) {
+        console.log(this.props.book);
     this.props.shelfChange(this.props.book, event.target.value);
+        console.log(this.props.book);
+
   }
   //take value from select list
 render() {
+  const emptyThumbnail = "/src/img/no-cover.png";
   return (
     <li>
       <div className="book">
@@ -19,9 +23,18 @@ render() {
           <div className="book-cover" style={{
                width: 128,
                height: 192,
-               backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
+               backgroundImage: `url(
+                ${
+                  this.props.book.imageLinks
+                ? this.props.book.imageLinks.thumbnail
+                : emptyThumbnail
+                }
+               )`
+               }}></div>
             <div className="book-shelf-changer">
-              <select value = {this.props.book.shelf} onChange={this.handleChange}>
+              <select value = { (this.props.book.shelf !== undefined) ?
+                this.props.book.shelf : "none"}
+                   onChange={this.handleChange}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -31,7 +44,11 @@ render() {
             </div>
         </div>
           <div className="book-title">{this.props.book.title}</div>
-            <div className="book-authors">    {this.props.book.authors ?       this.props.book.authors.map((author) => {return author + ', ';}) : "None"}
+            <div className="book-authors">
+                 { this.props.book.authors
+                 ? this.props.book.authors.map(
+                   (author) => {return author + ', ';})
+                 : "unavailable"}
             </div>
       </div>
     </li>
