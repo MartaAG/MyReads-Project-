@@ -3,7 +3,7 @@ import * as BooksAPI from '../BooksAPI'
 
 class Book extends React.Component {
   constructor(props) {
-    super(); //calls parents constructor
+    super(props); //calls parents constructor
      this.handleChange = this.handleChange.bind(this);
   }
   //Change select options
@@ -31,8 +31,8 @@ render() {
             </div>
         </div>
           <div className="book-title">{this.props.book.title}</div>
-            <div className="book-authors">    {this.props.book.authors.map((author) => {
-                return author + ', ';})}</div>
+            <div className="book-authors">    {this.props.book.authors ?       this.props.book.authors.map((author) => {return author + ', ';}) : "None"}
+            </div>
       </div>
     </li>
   )}
