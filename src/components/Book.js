@@ -8,10 +8,7 @@ class Book extends React.Component {
   }
   //Change select options
   handleChange (event) {
-        console.log(this.props.book);
     this.props.shelfChange(this.props.book, event.target.value);
-        console.log(this.props.book);
-
   }
   //take value from select list
 render() {

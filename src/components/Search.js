@@ -6,24 +6,32 @@ import ListBooks from './BooksList'
 class Search extends React.Component {
 
   	state = {
-       showingBooks: []
+      query: '',
+      showingBooks: [],
+      message: ''
     }
 // Input search based on a code of kedevked //https://github.com/kedevked/webinar-book-react/blob/master/src/App.js
 
 updateQuery = (query) => {
     this.setState({ query: query.trim() })
     let showingBooks = [];
-    if (query) {
+    if (query !== '') {
+      console.log(query);
       BooksAPI.search(query).then(response => {
         if (response.length) {
           showingBooks = response.map(b => {
+
             const index = this.props.books.findIndex(c => c.id === b.id)
-            return (index >= 0) ?  this.props.books[index] : b;
-      })
-    }
-    this.setState({showingBooks});
+            return (index >= 0) ? this.props.books[index] : b;
+          })
+          this.setState({message: "This are your query results:"})
+        } else {this.setState({message: "Your query found no results."});}
+        this.setState({showingBooks});
     })
-}
+  } else {
+    this.setState({showingBooks: []});
+    this.setState({meessage: ""});
+  };
 }
 
 	render() {
@@ -41,6 +49,7 @@ updateQuery = (query) => {
               </div>
             </div>
             <div className="search-books-results">
+              <h2> {this.state.message} </h2>
               <ListBooks
                 books = {this.state.showingBooks}
                 shelfChange = {this.props.shelfChange}
